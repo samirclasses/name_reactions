@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Organic Chemistry Name Reactions Index</title>
+<meta charset="UTF-8">
+<title>Wurtz Reaction - Organic Chemistry Note</title>
 
 <style>
 
 body{
-font-family: Arial;
-background:#f4f6f7;
+font-family: Arial, sans-serif;
+background:#eef3ff;
+margin:40px;
+line-height:1.6;
+}
+
+h1,h3{
+color:#002b80;
 text-align:center;
 }
 
-h1{
-background:#2c3e50;
+h2{
+color:#003399;
+}
+
+.note{
+background:white;
+padding:20px;
+border-radius:8px;
+margin-bottom:20px;
+box-shadow:0px 0px 6px gray;
+}
+
+button{
+padding:8px 14px;
+background:#0047b3;
 color:white;
-padding:15px;
+border:none;
+border-radius:5px;
+cursor:pointer;
 }
 
-#searchBox{
-width:40%;
-padding:10px;
-font-size:16px;
-margin:20px;
+button:hover{
+background:#002f73;
 }
 
-.container{
-width:70%;
-margin:auto;
+.hidden{
+display:none;
 }
 
 .reaction{
-background:white;
-margin:5px;
-padding:10px;
-border-radius:6px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.reaction:hover{
-background:#d6eaf8;
-}
-
-.letter{
-margin-top:25px;
-font-size:22px;
-color:#2c3e50;
+font-size:18px;
 font-weight:bold;
+color:#990000;
 }
 
 </style>
@@ -54,85 +58,160 @@ font-weight:bold;
 </head>
 
 <body>
+<h3>Apex Chemistry</h3>
+<h1>Wurtz Reaction</h1>
 
-<h1>Organic Chemistry Name Reactions Index</h1>
+<div class="note">
 
-<input type="text" id="searchBox" placeholder="Search reaction..." onkeyup="searchReaction()">
+<h2>1. Definition</h2>
 
-<div class="container" id="reactionList">
+<p>
+The Wurtz reaction is an important organic reaction used for the preparation of higher alkanes.
+In this reaction, two molecules of alkyl halides react with sodium metal in the presence
+of dry ether to form a new carbon–carbon bond, producing a higher alkane.
+</p>
 
-<div class="letter">A</div>
-<div class="reaction">Aldol Condensation</div>
-<div class="reaction">Arndt–Eistert Reaction</div>
+<p>
+The reaction was discovered by the French chemist Charles Adolphe Wurtz in 1855.
+It is mainly used for the synthesis of symmetrical alkanes where two identical alkyl groups combine together.
+</p>
 
-<div class="letter">B</div>
-<div class="reaction">Baeyer–Villiger Oxidation</div>
-<div class="reaction">Beckmann Rearrangement</div>
-<div class="reaction">Benzoin Condensation</div>
+</div>
 
-<div class="letter">C</div>
-<div class="reaction">Cannizzaro Reaction</div>
-<div class="reaction">Clemmensen Reduction</div>
-<div class="reaction">Claisen Condensation</div>
+<div class="note">
 
-<div class="letter">D</div>
-<div class="reaction">Diels–Alder Reaction</div>
+<h2>2. General Reaction</h2>
 
-<div class="letter">F</div>
-<div class="reaction">Friedel–Crafts Alkylation</div>
-<div class="reaction">Friedel–Crafts Acylation</div>
+<p class="reaction">
+2 R–X + 2 Na → R–R + 2 NaX
+</p>
 
-<div class="letter">G</div>
-<div class="reaction">Gabriel Phthalimide Synthesis</div>
-<div class="reaction">Grignard Reaction</div>
+<p>
 
-<div class="letter">H</div>
-<div class="reaction">Hell–Volhard–Zelinsky Reaction</div>
-<div class="reaction">Hofmann Rearrangement</div>
+Where:
+<ul>
+<li>R = Alkyl group</li>
+<li>X = Halogen atom (Cl, Br, or I)</li>
+<li>Na = Sodium metal</li>
+</ul>
 
-<div class="letter">K</div>
-<div class="reaction">Kolbe Reaction</div>
+</p>
 
-<div class="letter">M</div>
-<div class="reaction">Mannich Reaction</div>
-<div class="reaction">Michael Addition</div>
+<p>
+The reaction takes place in the presence of <b>dry ether</b>, which acts as a solvent
+and helps stabilize the intermediate species formed during the reaction.
+</p>
 
-<div class="letter">P</div>
-<div class="reaction">Perkin Reaction</div>
+</div>
 
-<div class="letter">R</div>
-<div class="reaction">Reimer–Tiemann Reaction</div>
+<div class="note">
 
-<div class="letter">S</div>
-<div class="reaction">Sandmeyer Reaction</div>
-<div class="reaction">Swarts Reaction</div>
+<h2>3. Example</h2>
 
-<div class="letter">W</div>
-<div class="reaction">Wittig Reaction</div>
-<div class="reaction">Wolff–Kishner Reduction</div>
+<p>
+When methyl bromide reacts with sodium metal in dry ether, two methyl groups combine
+to form ethane.
+</p>
+
+<p class="reaction">
+2 CH₃Br + 2 Na → C₂H₆ + 2 NaBr
+</p>
+
+<p>
+Similarly, when ethyl bromide reacts with sodium, butane is formed.
+</p>
+
+<p class="reaction">
+2 C₂H₅Br + 2 Na → C₄H₁₀ + 2 NaBr
+</p>
+
+</div>
+
+<div class="note">
+
+<h2>4. Reaction Mechanism</h2>
+
+<button onclick="showMechanism()">Show Mechanism</button>
+
+<div id="mechanism" class="hidden">
+
+<p>
+The Wurtz reaction proceeds through a free radical mechanism.
+Sodium metal provides electrons which lead to the formation of radical intermediates.
+</p>
+
+<ol>
+
+<li>
+Sodium metal donates an electron to the alkyl halide to form an alkyl radical.
+</li>
+
+<li>
+The carbon–halogen bond breaks and a radical species is produced.
+</li>
+
+<li>
+Two alkyl radicals combine together forming a new carbon–carbon bond.
+</li>
+
+<li>
+As a result, a higher alkane is produced.
+</li>
+
+</ol>
+
+</div>
+
+</div>
+
+<div class="note">
+
+<h2>5. Applications</h2>
+
+<ul>
+
+<li>Used for the preparation of higher alkanes from alkyl halides.</li>
+
+<li>Helps in increasing the carbon chain length in organic synthesis.</li>
+
+<li>Useful in laboratory preparation of symmetrical hydrocarbons.</li>
+
+<li>Important reaction in the study of carbon–carbon bond formation.</li>
+
+</ul>
+
+</div>
+
+<div class="note">
+
+<h2>6. Limitations</h2>
+
+<ul>
+
+<li>The reaction works best with primary alkyl halides.</li>
+
+<li>If two different alkyl halides are used, a mixture of products is obtained.</li>
+
+<li>Secondary and tertiary alkyl halides often undergo elimination reactions.</li>
+
+<li>The reaction is mainly suitable for preparing symmetrical alkanes.</li>
+
+<li>The presence of moisture can interfere with the reaction because sodium reacts with water.</li>
+
+</ul>
 
 </div>
 
 <script>
 
-function searchReaction(){
+function showMechanism(){
 
-let input=document.getElementById("searchBox").value.toLowerCase();
-let reactions=document.getElementsByClassName("reaction");
+let mech=document.getElementById("mechanism");
 
-for(let i=0;i<reactions.length;i++){
-
-let text=reactions[i].innerText.toLowerCase();
-
-if(text.includes(input))
-{
-reactions[i].style.display="block";
-}
-else
-{
-reactions[i].style.display="none";
-}
-
+if(mech.style.display==="none" || mech.style.display===""){
+mech.style.display="block";
+}else{
+mech.style.display="none";
 }
 
 }
