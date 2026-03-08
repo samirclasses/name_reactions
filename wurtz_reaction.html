@@ -1,253 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Wurtz Reaction Notes</title>
+<title>Organic Chemistry Name Reactions Index</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f7;
+text-align:center;
+}
+
+h1{
+background:#2c3e50;
+color:white;
+padding:15px;
+}
+
+#searchBox{
+width:40%;
+padding:10px;
+font-size:16px;
+margin:20px;
+}
+
+.container{
+width:70%;
+margin:auto;
+}
+
+.reaction{
+background:white;
+margin:5px;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.reaction:hover{
+background:#d6eaf8;
+}
+
+.letter{
+margin-top:25px;
+font-size:22px;
+color:#2c3e50;
+font-weight:bold;
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <h1>Wurtz Reaction Notes Generator</h1>
-  <button onclick="generateDoc()">Download Notes</button>
+<h1>Organic Chemistry Name Reactions Index</h1>
 
-  <!-- 1. Load docx library from CDN -->
-  <script src="https://unpkg.com/docx@9.5.3/build/index.js"></script>
+<input type="text" id="searchBox" placeholder="Search reaction..." onkeyup="searchReaction()">
 
-  <!-- 2. Your code goes here -->
-  <script>
-    async function generateDoc() {
-const {
-  Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
-  HeadingLevel, AlignmentType, BorderStyle, WidthType, ShadingType,
-  LevelFormat
-} = require('docx');
-const fs = require('fs');
+<div class="container" id="reactionList">
 
-const BLUE = "1A5276";
-const LIGHT_BLUE = "D6EAF8";
-const LIGHT_YELLOW = "FEF9E7";
-const LIGHT_GREEN = "EAFAF1";
+<div class="letter">A</div>
+<div class="reaction">Aldol Condensation</div>
+<div class="reaction">Arndt–Eistert Reaction</div>
 
-const border = { style: BorderStyle.SINGLE, size: 1, color: "AAAAAA" };
-const borders = { top: border, bottom: border, left: border, right: border };
+<div class="letter">B</div>
+<div class="reaction">Baeyer–Villiger Oxidation</div>
+<div class="reaction">Beckmann Rearrangement</div>
+<div class="reaction">Benzoin Condensation</div>
 
-function heading1(text) {
-  return new Paragraph({
-    heading: HeadingLevel.HEADING_1,
-    spacing: { before: 300, after: 120 },
-    children: [new TextRun({ text, bold: true, size: 32, color: BLUE, font: "Arial" })]
-  });
+<div class="letter">C</div>
+<div class="reaction">Cannizzaro Reaction</div>
+<div class="reaction">Clemmensen Reduction</div>
+<div class="reaction">Claisen Condensation</div>
+
+<div class="letter">D</div>
+<div class="reaction">Diels–Alder Reaction</div>
+
+<div class="letter">F</div>
+<div class="reaction">Friedel–Crafts Alkylation</div>
+<div class="reaction">Friedel–Crafts Acylation</div>
+
+<div class="letter">G</div>
+<div class="reaction">Gabriel Phthalimide Synthesis</div>
+<div class="reaction">Grignard Reaction</div>
+
+<div class="letter">H</div>
+<div class="reaction">Hell–Volhard–Zelinsky Reaction</div>
+<div class="reaction">Hofmann Rearrangement</div>
+
+<div class="letter">K</div>
+<div class="reaction">Kolbe Reaction</div>
+
+<div class="letter">M</div>
+<div class="reaction">Mannich Reaction</div>
+<div class="reaction">Michael Addition</div>
+
+<div class="letter">P</div>
+<div class="reaction">Perkin Reaction</div>
+
+<div class="letter">R</div>
+<div class="reaction">Reimer–Tiemann Reaction</div>
+
+<div class="letter">S</div>
+<div class="reaction">Sandmeyer Reaction</div>
+<div class="reaction">Swarts Reaction</div>
+
+<div class="letter">W</div>
+<div class="reaction">Wittig Reaction</div>
+<div class="reaction">Wolff–Kishner Reduction</div>
+
+</div>
+
+<script>
+
+function searchReaction(){
+
+let input=document.getElementById("searchBox").value.toLowerCase();
+let reactions=document.getElementsByClassName("reaction");
+
+for(let i=0;i<reactions.length;i++){
+
+let text=reactions[i].innerText.toLowerCase();
+
+if(text.includes(input))
+{
+reactions[i].style.display="block";
+}
+else
+{
+reactions[i].style.display="none";
 }
 
-function heading2(text) {
-  return new Paragraph({
-    heading: HeadingLevel.HEADING_2,
-    spacing: { before: 240, after: 100 },
-    children: [new TextRun({ text, bold: true, size: 26, color: "1F618D", font: "Arial" })]
-  });
 }
 
-function heading3(text) {
-  return new Paragraph({
-    spacing: { before: 180, after: 80 },
-    children: [new TextRun({ text, bold: true, size: 24, color: "2E4057", font: "Arial" })]
-  });
 }
 
-function body(text, options = {}) {
-  return new Paragraph({
-    spacing: { before: 60, after: 60 },
-    children: [new TextRun({ text, size: 22, font: "Arial", ...options })]
-  });
-}
-
-function bullet(text, bold_prefix = "") {
-  return new Paragraph({
-    numbering: { reference: "bullets", level: 0 },
-    spacing: { before: 40, after: 40 },
-    children: [
-      ...(bold_prefix ? [new TextRun({ text: bold_prefix, bold: true, size: 22, font: "Arial" })] : []),
-      new TextRun({ text, size: 22, font: "Arial" })
-    ]
-  });
-}
-
-function boxedPara(text, fillColor = LIGHT_BLUE) {
-  return new Paragraph({
-    spacing: { before: 80, after: 80 },
-    border: {
-      top: { style: BorderStyle.SINGLE, size: 4, color: "1A5276" },
-      bottom: { style: BorderStyle.SINGLE, size: 4, color: "1A5276" },
-      left: { style: BorderStyle.SINGLE, size: 8, color: "1A5276" },
-      right: { style: BorderStyle.SINGLE, size: 4, color: "1A5276" },
-    },
-    shading: { fill: fillColor, type: ShadingType.CLEAR },
-    indent: { left: 360, right: 360 },
-    children: [new TextRun({ text, size: 24, font: "Courier New", bold: true, color: "1A5276" })]
-  });
-}
-
-function colorBox(lines, fillColor = LIGHT_YELLOW) {
-  return lines.map((line, i) => new Paragraph({
-    spacing: { before: i === 0 ? 80 : 20, after: i === lines.length - 1 ? 80 : 20 },
-    shading: { fill: fillColor, type: ShadingType.CLEAR },
-    indent: { left: 360, right: 360 },
-    border: i === 0
-      ? { top: { style: BorderStyle.SINGLE, size: 2, color: "999999" }, left: { style: BorderStyle.SINGLE, size: 6, color: "F39C12" }, right: { style: BorderStyle.SINGLE, size: 2, color: "999999" } }
-      : i === lines.length - 1
-      ? { bottom: { style: BorderStyle.SINGLE, size: 2, color: "999999" }, left: { style: BorderStyle.SINGLE, size: 6, color: "F39C12" }, right: { style: BorderStyle.SINGLE, size: 2, color: "999999" } }
-      : { left: { style: BorderStyle.SINGLE, size: 6, color: "F39C12" }, right: { style: BorderStyle.SINGLE, size: 2, color: "999999" } },
-    children: [new TextRun({ text: line, size: 22, font: "Arial" })]
-  }));
-}
-
-function divider() {
-  return new Paragraph({
-    spacing: { before: 120, after: 120 },
-    border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: "D0D0D0" } },
-    children: [new TextRun("")]
-  });
-}
-
-function makeTable(headers, rows, colWidths) {
-  const headerRow = new TableRow({
-    children: headers.map((h, i) => new TableCell({
-      borders,
-      width: { size: colWidths[i], type: WidthType.DXA },
-      shading: { fill: "1A5276", type: ShadingType.CLEAR },
-      margins: { top: 80, bottom: 80, left: 120, right: 120 },
-      children: [new Paragraph({ children: [new TextRun({ text: h, bold: true, size: 20, color: "FFFFFF", font: "Arial" })] })]
-    }))
-  });
-  const dataRows = rows.map((row, ri) => new TableRow({
-    children: row.map((cell, ci) => new TableCell({
-      borders,
-      width: { size: colWidths[ci], type: WidthType.DXA },
-      shading: { fill: ri % 2 === 0 ? "EBF5FB" : "FFFFFF", type: ShadingType.CLEAR },
-      margins: { top: 80, bottom: 80, left: 120, right: 120 },
-      children: [new Paragraph({ children: [new TextRun({ text: cell, size: 20, font: "Arial" })] })]
-    }))
-  }));
-  return new Table({
-    width: { size: 9360, type: WidthType.DXA },
-    columnWidths: colWidths,
-    rows: [headerRow, ...dataRows]
-  });
-}
-
-const doc = new Document({
-  numbering: {
-    config: [
-      {
-        reference: "bullets",
-        levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT,
-          style: { paragraph: { indent: { left: 720, hanging: 360 } } } }]
-      }
-    ]
-  },
-  styles: {
-    default: { document: { run: { font: "Arial", size: 22 } } },
-    paragraphStyles: [
-      { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 32, bold: true, font: "Arial" },
-        paragraph: { spacing: { before: 300, after: 120 }, outlineLevel: 0 } },
-      { id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 26, bold: true, font: "Arial" },
-        paragraph: { spacing: { before: 240, after: 100 }, outlineLevel: 1 } },
-    ]
-  },
-  sections: [{
-    properties: {
-      page: {
-        size: { width: 12240, height: 15840 },
-        margin: { top: 1080, right: 1080, bottom: 1080, left: 1080 }
-      }
-    },
-    children: [
-      // Title
-      new Paragraph({
-        alignment: AlignmentType.CENTER,
-        spacing: { before: 0, after: 40 },
-        children: [new TextRun({ text: "WURTZ REACTION", bold: true, size: 52, color: BLUE, font: "Arial" })]
-      }),
-      new Paragraph({
-        alignment: AlignmentType.CENTER,
-        spacing: { before: 0, after: 60 },
-        children: [new TextRun({ text: "Comprehensive Study Notes", size: 26, color: "555555", font: "Arial", italics: true })]
-      }),
-      divider(),
-
-      heading1("1. Introduction"),
-      body("The Wurtz reaction is a classic coupling reaction in organic chemistry, named after the French chemist Charles Adolphe Wurtz, who first reported it in 1855."),
-
-      heading1("2. Definition"),
-      body("Two molecules of an alkyl halide are treated with sodium metal in dry ether to form a higher alkane."),
-      boxedPara("2 R-X  +  2 Na  ——(dry ether)——>  R-R  +  2 NaX"),
-
-      heading1("3. Example Reactions"),
-      heading3("Example 1: Ethane from Bromomethane"),
-      boxedPara("2 CH₃-Br  +  2 Na  ——>  CH₃-CH₃  +  2 NaBr"),
-      heading3("Example 2: Butane from Bromoethane"),
-      boxedPara("2 C₂H₅-Br  +  2 Na  ——>  C₂H₅-C₂H₅  +  2 NaBr"),
-
-      heading1("4. Reaction Mechanism"),
-      heading3("Step 1 — Formation of Organosodium Compound"),
-      ...colorBox(["R-X  +  Na  ——>  R-Na  +  NaX", "Sodium donates an electron; C-X bond breaks homolytically."], LIGHT_BLUE),
-      heading3("Step 2 — Coupling"),
-      ...colorBox(["R-Na  +  R-X  ——>  R-R  +  NaX", "Carbanion attacks alkyl halide; new C-C bond forms."], LIGHT_GREEN),
-
-      heading1("5. Reaction Conditions"),
-      makeTable(
-        ["Condition", "Details", "Reason"],
-        [
-          ["Reagent", "Sodium metal (Na)", "Reducing agent / electron donor"],
-          ["Solvent", "Dry ether", "Anhydrous — prevents side reactions"],
-          ["Halide order", "RI > RBr > RCl >> RF", "Bond strength decreases down group"],
-        ],
-        [2500, 3500, 3360]
-      ),
-
-      heading1("6. Limitations"),
-      bullet("Only useful for symmetric alkane synthesis."),
-      bullet("Mixed Wurtz gives three products — impractical."),
-      bullet("Tertiary halides undergo elimination instead."),
-
-      heading1("7. Wurtz-Fittig Reaction"),
-      boxedPara("Ar-X  +  R-X  +  2Na  ——>  Ar-R  +  2 NaX"),
-      boxedPara("C₆H₅-Br  +  CH₃-Br  +  2Na  ——>  C₆H₅-CH₃  +  2 NaBr"),
-
-      heading1("8. Quick Revision"),
-      ...colorBox([
-        "✅  Discovered by Charles Adolphe Wurtz in 1855",
-        "✅  2 R-X + 2 Na → R-R + 2 NaX (in dry ether)",
-        "✅  Best for symmetric alkane synthesis",
-        "✅  Mechanism: organosodium intermediate (R-Na)",
-        "✅  Reactivity: RI > RBr > RCl >> RF"
-      ], LIGHT_YELLOW),
-
-      divider(),
-      new Paragraph({
-        alignment: AlignmentType.CENTER,
-        children: [new TextRun({ text: "End of Notes — Wurtz Reaction", size: 20, italics: true, color: "888888", font: "Arial" })]
-      }),
-    ]
-  }]
-});
-
-Packer.toBuffer(doc).then(buf => {
-  fs.writeFileSync('Wurtz_Reaction_Notes.docx', buf);
-  console.log('Done!');
-});
-
-      // 3. Generate and trigger download
-      const buffer = await Packer.toBlob(doc); // ← use toBlob() in browser, not toBuffer()
-      const url = URL.createObjectURL(buffer);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Wurtz_Reaction_Notes.docx";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-  </script>
+</script>
 
 </body>
 </html>
