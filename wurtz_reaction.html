@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wurtz Reaction Notes</title>
+</head>
+<body>
+
+  <h1>Wurtz Reaction Notes Generator</h1>
+  <button onclick="generateDoc()">Download Notes</button>
+
+  <!-- 1. Load docx library from CDN -->
+  <script src="https://unpkg.com/docx@9.5.3/build/index.js"></script>
+
+  <!-- 2. Your code goes here -->
+  <script>
+    async function generateDoc() {
 const {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
   HeadingLevel, AlignmentType, BorderStyle, WidthType, ShadingType,
@@ -220,3 +237,17 @@ Packer.toBuffer(doc).then(buf => {
   fs.writeFileSync('Wurtz_Reaction_Notes.docx', buf);
   console.log('Done!');
 });
+
+      // 3. Generate and trigger download
+      const buffer = await Packer.toBlob(doc); // ← use toBlob() in browser, not toBuffer()
+      const url = URL.createObjectURL(buffer);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Wurtz_Reaction_Notes.docx";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>
