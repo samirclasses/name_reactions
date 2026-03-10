@@ -1,595 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aldol Condensation — Organic Chemistry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #0a0b0e;
-      --surface: #10121a;
-      --surface2: #161924;
-      --border: #22283a;
-      --amber: #e8a030;
-      --amber-dim: #c07820;
-      --amber-glow: rgba(232,160,48,0.12);
-      --teal: #3ec9b0;
-      --teal-dim: rgba(62,201,176,0.15);
-      --red: #e05060;
-      --text: #e4e6ef;
-      --muted: #7a819a;
-      --faint: #2a3050;
-    }
+<title>Aldol Condensation</title>
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+<style>
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Source Serif 4', serif;
-      font-weight: 300;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+body{
+font-family: Arial;
+background:#f4f6f7;
+margin:40px;
+line-height:1.6;
+}
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 999;
-    }
+h1,h3{
+background:#2c3e50;
+color:white;
+padding:15px;
+text-align:center;
+}
 
-    header {
-      position: relative;
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      overflow: hidden;
-    }
+h2{
+color:#2c3e50;
+border-bottom:2px solid #ddd;
+padding-bottom:5px;
+}
 
-    header::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(232,160,48,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(62,201,176,0.05) 0%, transparent 60%);
-    }
+.box{
+background:white;
+padding:15px;
+margin-bottom:20px;
+border-left:5px solid #3498db;
+box-shadow:0 0 5px #ccc;
+}
 
-    .hex-grid { position: absolute; inset: 0; overflow: hidden; opacity: 0.06; }
-    .hex-grid svg { width: 100%; height: 100%; }
+.example{
+background:#eef7ff;
+padding:10px;
+border-left:4px solid #2980b9;
+font-family:monospace;
+}
 
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber);
-      border: 1px solid var(--amber-dim);
-      padding: 0.3rem 1rem;
-      border-radius: 2px;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      animation: fadeUp 0.8s 0.15s ease both;
-    }
-
-    h1 em { font-style: italic; color: var(--amber); display: block; }
-
-    .subtitle {
-      font-family: 'Source Serif 4', serif;
-      font-size: 1.1rem; color: var(--muted);
-      max-width: 560px; margin: 1.5rem auto 0;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-
-    .scroll-hint {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      color: var(--muted); font-size: 0.7rem; letter-spacing: 0.15em;
-      font-family: 'JetBrains Mono', monospace;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-    .scroll-line {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--amber), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10,11,14,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex; align-items: center; overflow-x: auto;
-    }
-
-    nav a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--muted);
-      text-decoration: none;
-      padding: 1.1rem 1.4rem;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-      white-space: nowrap;
-    }
-    nav a:hover { color: var(--amber); border-color: var(--amber); }
-
-    main { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
-
-    section {
-      padding: 5rem 0 3rem;
-      border-top: 1px solid var(--border);
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    section.visible { opacity: 1; transform: translateY(0); }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--amber);
-      margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .section-label::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(to right, var(--amber-dim), transparent);
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700; line-height: 1.2; margin-bottom: 1.75rem;
-    }
-
-    h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      margin: 2.5rem 0 0.75rem; color: var(--teal);
-    }
-
-    p { margin-bottom: 1.2rem; color: #c8cce0; font-size: 1.05rem; }
-    strong { color: var(--text); font-weight: 600; }
-
-    .def-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--amber);
-      padding: 1.75rem 2rem;
-      border-radius: 0 8px 8px 0;
-      margin: 2rem 0; position: relative; overflow: hidden;
-    }
-    .def-box::before {
-      content: '"';
-      position: absolute; top: -0.5rem; left: 1.5rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 6rem; color: var(--amber-glow); line-height: 1;
-    }
-    .def-box p { color: var(--text); font-size: 1.1rem; margin: 0; font-style: italic; }
-
-    .reaction-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px; padding: 2rem 2.5rem;
-      margin: 2rem 0; overflow-x: auto;
-    }
-
-    .reaction {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(0.85rem, 2vw, 1rem);
-      text-align: center; line-height: 2.4; white-space: nowrap;
-    }
-
-    .chem { color: var(--amber); font-weight: 600; }
-    .arrow { color: var(--teal); font-size: 1.3em; margin: 0 0.5rem; }
-    .catalyst {
-      display: block; font-size: 0.7rem; color: var(--muted);
-      text-align: center; margin: -0.8rem 0 0.4rem; letter-spacing: 0.1em;
-    }
-
-    .steps { display: flex; flex-direction: column; gap: 1.25rem; margin: 2rem 0; }
-
-    .step {
-      display: grid; grid-template-columns: 48px 1fr;
-      gap: 1.25rem; align-items: start;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.25rem 1.5rem;
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .step:hover { border-color: var(--amber-dim); background: var(--surface2); }
-
-    .step-num {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--amber-glow); border: 1px solid var(--amber-dim);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; font-weight: 700; color: var(--amber); flex-shrink: 0;
-    }
-
-    .step-content h4 {
-      font-family: 'Source Serif 4', serif;
-      font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem;
-    }
-    .step-content p { color: var(--muted); font-size: 0.95rem; margin: 0; }
-    .step-content code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem; color: var(--teal);
-      background: var(--teal-dim); padding: 0.15rem 0.45rem; border-radius: 3px;
-    }
-
-    .example-card {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 12px; padding: 2rem; margin: 2rem 0;
-    }
-    .example-card h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; color: var(--amber); margin-bottom: 1rem;
-    }
-
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem; margin: 2rem 0;
-    }
-
-    .app-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.5rem;
-      position: relative; overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .app-card:hover { transform: translateY(-3px); border-color: var(--amber-dim); }
-    .app-card::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at top left, var(--amber-glow), transparent 60%);
-      pointer-events: none;
-    }
-
-    .app-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .app-card h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; color: var(--text); margin-bottom: 0.5rem;
-    }
-    .app-card p { font-size: 0.9rem; color: var(--muted); margin: 0; }
-
-    .limit-list { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
-    .limit-item {
-      display: flex; gap: 1rem; align-items: flex-start;
-      background: var(--surface); border: 1px solid var(--border);
-      border-left: 3px solid var(--red);
-      border-radius: 0 8px 8px 0; padding: 1rem 1.25rem;
-    }
-    .limit-bullet {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--red); flex-shrink: 0; margin-top: 0.55rem;
-    }
-    .limit-item p { margin: 0; font-size: 0.97rem; color: var(--muted); }
-    .limit-item strong { color: var(--text); }
-
-    .info-table {
-      width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.97rem;
-    }
-    .info-table th {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--amber); text-align: left;
-      padding: 0.75rem 1rem; border-bottom: 2px solid var(--amber-dim);
-      background: var(--surface);
-    }
-    .info-table td {
-      padding: 0.85rem 1rem; border-bottom: 1px solid var(--border);
-      color: var(--muted); vertical-align: top;
-    }
-    .info-table tr:hover td { background: var(--surface); color: var(--text); }
-    .info-table td:first-child { color: var(--text); font-weight: 600; }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 2rem; text-align: center;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.1em;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 1; }
-    }
-
-    @media (max-width: 600px) {
-      .app-grid { grid-template-columns: 1fr; }
-      .step { grid-template-columns: 40px 1fr; }
-      nav a { padding: 1rem 0.9rem; }
-    }
-  </style>
+</style>
 </head>
+
 <body>
+<h3>Apex Chemistry</h3>
+<h1>Aldol Condensation</h1>
 
-<header>
-  <div class="hex-grid">
-    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-      <defs>
-        <pattern id="hex" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
-          <polygon points="30,2 58,16 58,36 30,50 2,36 2,16" fill="none" stroke="#e8a030" stroke-width="0.6"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#hex)"/>
-    </svg>
-  </div>
-  <div class="tag">Organic Chemistry · Reaction Mechanisms</div>
-  <h1>Aldol<em>Condensation</em></h1>
-  <p class="subtitle">A foundational carbon–carbon bond-forming reaction at the heart of synthetic and biological chemistry.</p>
-  <div class="scroll-hint">
-    <span>Scroll to explore</span>
-    <div class="scroll-line"></div>
-  </div>
-</header>
+<div class="box">
+<h2>Definition</h2>
+<p>
+Aldol condensation is an important organic reaction in which two molecules of 
+aldehydes or ketones containing at least one α-hydrogen react in the presence 
+of a base or acid catalyst to form a β-hydroxy aldehyde or β-hydroxy ketone 
+(known as an aldol). On heating, this product usually loses water to form an 
+α,β-unsaturated carbonyl compound.
+</p>
+</div>
 
-<nav>
-  <a href="#definition">Definition</a>
-  <a href="#example">Example</a>
-  <a href="#mechanism">Mechanism</a>
-  <a href="#applications">Applications</a>
-  <a href="#limitations">Limitations</a>
-</nav>
+<div class="box">
+<h2>Example</h2>
 
-<main>
+<p>
+A classic example is the condensation of two molecules of acetaldehyde in the 
+presence of dilute sodium hydroxide.
+</p>
 
-  <section id="definition">
-    <div class="section-label">01 — Definition</div>
-    <h2>What is Aldol Condensation?</h2>
-    <div class="def-box">
-      <p>Aldol condensation is an organic reaction in which an enol or enolate ion reacts with a carbonyl compound to form a β-hydroxy carbonyl compound (aldol product), which then undergoes dehydration to yield an α,β-unsaturated carbonyl compound.</p>
-    </div>
-    <p>The name <strong>"Aldol"</strong> is derived from the words <strong>ald</strong>ehyde and alc<strong>ohol</strong>, reflecting the dual functional groups present in the initial product. The condensation step involves the elimination of water to form a conjugated system, making it a two-stage process.</p>
-    <p>This reaction was independently discovered by <strong>Charles-Adolphe Wurtz</strong> and <strong>Alexander Borodin</strong> in 1872. It is one of the most powerful tools in synthetic chemistry for constructing carbon–carbon bonds, especially in the synthesis of complex natural products.</p>
-    <table class="info-table">
-      <thead>
-        <tr><th>Property</th><th>Details</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Reaction Type</td><td>Nucleophilic addition → Dehydration (Condensation)</td></tr>
-        <tr><td>Bond Formed</td><td>C–C bond (carbon–carbon)</td></tr>
-        <tr><td>Catalyst</td><td>Dilute acid (H₂SO₄, HCl) or dilute base (NaOH, KOH)</td></tr>
-        <tr><td>Key Requirement</td><td>α-hydrogen on at least one carbonyl compound</td></tr>
-        <tr><td>Initial Product</td><td>β-hydroxy carbonyl (aldol)</td></tr>
-        <tr><td>Final Product</td><td>α,β-unsaturated carbonyl compound</td></tr>
-        <tr><td>Condition</td><td>Dilute base/acid; heat promotes dehydration</td></tr>
-      </tbody>
-    </table>
-  </section>
+<div class="example">
+2 CH3CHO  →  CH3CH(OH)CH2CHO  
+(3-Hydroxybutanal)
 
-  <section id="example">
-    <div class="section-label">02 — Example</div>
-    <h2>Classic Reaction Examples</h2>
-    <p>The simplest and most illustrative example involves the self-condensation of <strong>acetaldehyde (ethanal)</strong> under basic conditions.</p>
+On heating:
 
-    <h3>Self-Condensation of Acetaldehyde</h3>
-    <div class="example-card">
-      <h4>Acetaldehyde → 3-Hydroxybutanal → Crotonaldehyde</h4>
-      <div class="reaction-box">
-        <div class="reaction">
-          <span class="chem">2 CH₃CHO</span>
-          <span class="arrow">⟶</span>
-          <span class="catalyst">NaOH (dilute) / H₂O</span>
-          <span class="chem">CH₃CH(OH)CH₂CHO</span>
-          <span class="arrow">⟶</span>
-          <span class="catalyst">−H₂O / heat</span>
-          <span class="chem">CH₃CH=CHCHO</span>
-        </div>
-      </div>
-      <p style="font-size:0.9rem; color:var(--muted)">Two molecules of acetaldehyde condense under dilute NaOH to give <em>3-hydroxybutanal</em>. On warming, dehydration yields <em>but-2-enal (crotonaldehyde)</em>.</p>
-    </div>
+CH3CH(OH)CH2CHO  →  CH3CH=CHCHO + H2O  
+(Crotonaldehyde)
+</div>
 
-    <h3>Aldol Condensation of Acetone</h3>
-    <div class="example-card">
-      <h4>Acetone → Diacetone Alcohol → Mesityl Oxide</h4>
-      <div class="reaction-box">
-        <div class="reaction">
-          <span class="chem">2 (CH₃)₂CO</span>
-          <span class="arrow">⟶</span>
-          <span class="catalyst">Ba(OH)₂ catalyst</span>
-          <span class="chem">(CH₃)₂C(OH)CH₂COCH₃</span>
-          <span class="arrow">⟶</span>
-          <span class="catalyst">−H₂O</span>
-          <span class="chem">(CH₃)₂C=CHCOCH₃</span>
-        </div>
-      </div>
-      <p style="font-size:0.9rem; color:var(--muted)">Acetone undergoes self-condensation via barium hydroxide to form <em>diacetone alcohol</em>, then dehydrates to <em>mesityl oxide</em>.</p>
-    </div>
+</div>
 
-    <h3>Cross Aldol Condensation (Claisen–Schmidt)</h3>
-    <div class="example-card">
-      <h4>Benzaldehyde + Acetophenone → Chalcone</h4>
-      <div class="reaction-box">
-        <div class="reaction">
-          <span class="chem">C₆H₅CHO</span>
-          <span style="color:var(--muted)"> + </span>
-          <span class="chem">C₆H₅COCH₃</span>
-          <span class="arrow">⟶</span>
-          <span class="catalyst">NaOH / EtOH</span>
-          <span class="chem">C₆H₅CH=CHC(O)C₆H₅</span>
-          <span style="color:var(--muted)"> + H₂O</span>
-        </div>
-      </div>
-      <p style="font-size:0.9rem; color:var(--muted)">Benzaldehyde (no α-H) reacts with acetophenone selectively, yielding <em>chalcone</em> — a precursor to many natural flavonoids.</p>
-    </div>
-  </section>
+<div class="box">
+<h2>Mechanism</h2>
 
-  <section id="mechanism">
-    <div class="section-label">03 — Mechanism</div>
-    <h2>Step-by-Step Mechanism</h2>
-    <p>The aldol condensation proceeds through a well-defined series of steps. The base-catalyzed pathway (most common) is described below:</p>
+<p><b>Step 1: Formation of Enolate Ion</b></p>
+<p>
+The base (usually OH⁻) removes an α-hydrogen from the aldehyde or ketone, 
+forming an enolate ion.
+</p>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h4>Enolate Ion Formation (Deprotonation)</h4>
-          <p>The base (e.g., OH⁻) abstracts an <strong>α-hydrogen</strong> from the carbonyl compound, generating a resonance-stabilized <code>enolate ion</code>. The negative charge is delocalized over α-carbon and oxygen — this is the nucleophile.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h4>Nucleophilic Addition</h4>
-          <p>The α-carbon of the enolate attacks the <strong>electrophilic carbonyl carbon</strong> of a second molecule, forming a new <code>C–C bond</code> and a tetrahedral alkoxide intermediate.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h4>Protonation → Aldol Product</h4>
-          <p>The alkoxide is protonated by water to yield the <code>β-hydroxy carbonyl compound</code> — the <strong>aldol product</strong>. At low temperatures, the reaction may stop here. The base catalyst is regenerated.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h4>Dehydration (Condensation Step)</h4>
-          <p>On heating, <code>E1cb elimination</code> occurs: base abstracts α-H, and β-OH leaves as water, producing the thermodynamically stable <strong>α,β-unsaturated carbonyl compound</strong>.</p>
-        </div>
-      </div>
-    </div>
+<p><b>Step 2: Nucleophilic Addition</b></p>
+<p>
+The enolate ion acts as a nucleophile and attacks the carbonyl carbon of 
+another aldehyde or ketone molecule.
+</p>
 
-    <h3>Acid-Catalyzed Pathway</h3>
-    <p>Under acidic conditions, the carbonyl is protonated forming an <strong>oxocarbenium ion</strong>, which tautomerizes to the nucleophilic <strong>enol</strong>. The enol attacks a protonated carbonyl; proton transfers complete the β-hydroxy product, which dehydrates on heating.</p>
+<p><b>Step 3: Formation of Aldol</b></p>
+<p>
+The resulting alkoxide ion gets protonated to form a β-hydroxy aldehyde or 
+β-hydroxy ketone (aldol).
+</p>
 
-    <div class="reaction-box">
-      <div class="reaction">
-        <span class="chem">Enolate (C⁻)</span>
-        <span class="arrow">+</span>
-        <span class="chem">R-CHO</span>
-        <span class="arrow">⟶</span>
-        <span class="chem">β-Hydroxy Carbonyl</span>
-        <span class="arrow">-H₂O / Δ</span>
-        <span class="chem">α,β-Unsaturated Carbonyl</span>
-      </div>
-    </div>
+<p><b>Step 4: Dehydration</b></p>
+<p>
+On heating, the aldol loses a molecule of water to form an α,β-unsaturated 
+carbonyl compound.
+</p>
 
-    <h3>Intramolecular Aldol</h3>
-    <p>When a molecule contains two carbonyl groups, an <strong>intramolecular aldol condensation</strong> can occur. Highly favored for 5- or 6-membered ring formation; widely used in steroid and natural product synthesis.</p>
-  </section>
+</div>
 
-  <section id="applications">
-    <div class="section-label">04 — Applications</div>
-    <h2>Applications in Chemistry</h2>
-    <p>Aldol condensation is one of the most versatile reactions in synthetic organic chemistry due to its C–C bond-forming power.</p>
+<div class="box">
+<h2>Applications</h2>
 
-    <div class="app-grid">
-      <div class="app-card">
-        <div class="app-icon">🧪</div>
-        <h4>Total Synthesis</h4>
-        <p>Used in the synthesis of terpenes, steroids, macrolide antibiotics, and polyketides. The Hajos–Parrish ketone synthesis uses an intramolecular aldol.</p>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">💊</div>
-        <h4>Pharmaceutical Industry</h4>
-        <p>Chalcones from Claisen–Schmidt condensation are key precursors to antifungal, anti-inflammatory, and anticancer drugs.</p>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">🏭</div>
-        <h4>Industrial Chemistry</h4>
-        <p><em>2-Ethyl-1-hexanol</em> (plasticizer precursor) is industrially produced via aldol condensation of butanal then hydrogenation — millions of tonnes per year.</p>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">🌿</div>
-        <h4>Biological Metabolism</h4>
-        <p>Enzyme <strong>aldolase</strong> catalyzes an aldol reaction in glycolysis, cleaving fructose-1,6-bisphosphate into two triose phosphates.</p>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">🎨</div>
-        <h4>Dyes & Fragrances</h4>
-        <p>Cinnamaldehyde (cinnamon fragrance) is synthesized by aldol condensation of benzaldehyde with acetaldehyde.</p>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">🔬</div>
-        <h4>Asymmetric Synthesis</h4>
-        <p>Proline-catalyzed aldol reactions enable enantioselective C–C bond formation — a cornerstone of organocatalysis (Nobel Prize 2021).</p>
-      </div>
-    </div>
-  </section>
+<ul>
+<li>Used for the synthesis of α,β-unsaturated aldehydes and ketones.</li>
+<li>Important reaction in the synthesis of many pharmaceuticals and fragrances.</li>
+<li>Used in industrial preparation of compounds like crotonaldehyde.</li>
+<li>Widely used in organic synthesis for carbon–carbon bond formation.</li>
+</ul>
 
-  <section id="limitations">
-    <div class="section-label">05 — Limitations</div>
-    <h2>Limitations & Challenges</h2>
-    <p>Despite its wide utility, aldol condensation has several important limitations chemists must account for.</p>
+</div>
 
-    <div class="limit-list">
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Mixed / Cross Aldol Problem:</strong> When two different compounds both have α-hydrogens, up to four products can form, severely reducing selectivity and yield.</p></div>
-      </div>
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Requirement for α-Hydrogen:</strong> At least one compound must possess an α-hydrogen. Compounds without α-H (e.g., benzaldehyde) cannot act as donors.</p></div>
-      </div>
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Reversibility:</strong> The aldol addition step is reversible (retro-aldol). At high temperatures, product may revert to starting materials, reducing yield.</p></div>
-      </div>
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Poor Stereoselectivity:</strong> Classical conditions give little control over <em>syn/anti</em> diastereoselectivity. Asymmetric variants require chiral catalysts or auxiliaries.</p></div>
-      </div>
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Over-Reaction / Polymerization:</strong> Under strongly basic conditions, the α,β-unsaturated product may undergo further aldol reactions leading to oligomers or polymers.</p></div>
-      </div>
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Ketone Self-Condensation is Slow:</strong> Ketones are less reactive than aldehydes due to steric hindrance and lower electrophilicity. Equilibrium may favor starting materials for bulky ketones.</p></div>
-      </div>
-      <div class="limit-item">
-        <div class="limit-bullet"></div>
-        <div><p><strong>Regioselectivity Issues:</strong> Unsymmetrical ketones have two sets of α-hydrogens, potentially giving a mixture of enolates and multiple products.</p></div>
-      </div>
-    </div>
-  </section>
+<div class="box">
+<h2>Limitations</h2>
 
-</main>
+<ul>
+<li>The reaction requires at least one α-hydrogen in the aldehyde or ketone.</li>
+<li>Aldehydes without α-hydrogen cannot undergo aldol condensation.</li>
+<li>Mixtures of products may form when two different carbonyl compounds are used.</li>
+<li>Side reactions such as Cannizzaro reaction may occur with certain aldehydes.</li>
+</ul>
 
-<footer>
-  <p>Organic Chemistry Reference · Aldol Condensation · C–C Bond Formation</p>
-  <p style="margin-top:0.5rem; opacity:0.5">CH₃CHO + Base → Enolate → [Aldol Addition] → β-Hydroxy Carbonyl → [–H₂O] → α,β-Unsaturated Carbonyl</p>
-</footer>
+</div>
 
-<script>
-  // Scroll reveal
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  sections.forEach(s => observer.observe(s));
-
-  // Active nav highlight
-  const navLinks = document.querySelectorAll('nav a');
-  const sectionEls = document.querySelectorAll('section[id]');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sectionEls.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
-      a.style.borderColor = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
-    });
-  });
-</script>
 </body>
 </html>
