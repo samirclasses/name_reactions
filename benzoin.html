@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Benzoin Condensation</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f4f6f7;
+margin:30px;
+line-height:1.7;
+}
+
+h1,h3{
+background:#2c3e50;
+color:white;
+padding:15px;
+text-align:center;
+border-radius:10px;
+}
+
+h2{
+color:#2c3e50;
+border-bottom:2px solid #2c3e50;
+padding-bottom:5px;
+}
+
+.box{
+background:white;
+padding:20px;
+margin:20px 0;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.reaction{
+background:#ecf0f1;
+padding:12px;
+border-left:6px solid #2980b9;
+font-weight:bold;
+font-size:18px;
+}
+
+button{
+padding:10px 15px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+background:#2980b9;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#1f6391;
+}
+
+.correct{color:green;}
+.wrong{color:red;}
+
+</style>
+</head>
+
+<body>
+
+<h1>Apex Chemistry</h1>
+<h3>Benzoin Condensation</h3>
+
+<div class="box">
+<h2>Definition</h2>
+<p>
+Benzoin condensation is a reaction where two molecules of aromatic aldehydes combine in presence of CN⁻ or thiamine to form an α-hydroxy ketone (benzoin).
+</p>
+</div>
+
+<div class="box">
+<h2>General Reaction</h2>
+<div class="reaction">
+2 C6H5CHO → C6H5CH(OH)COC6H5
+</div>
+</div>
+
+<div class="box">
+<h2>Mechanism (Stepwise)</h2>
+<p>➡ Step 1: CN⁻ attacks carbonyl carbon</p>
+<p>➡ Step 2: Carbanion formation</p>
+<p>➡ Step 3: Attack on second molecule (C–C bond)</p>
+<p>➡ Step 4: CN⁻ eliminated → Benzoin formed</p>
+</div>
+
+<div class="box">
+<h2>Key Features</h2>
+<ul>
+<li>Carbon–carbon bond formation</li>
+<li>Requires nucleophilic catalyst</li>
+<li>Forms α-hydroxy ketone</li>
+</ul>
+</div>
+
+<div class="box">
+<h2>Quick Quiz</h2>
+<p><b>1. Benzoin condensation forms:</b></p>
+<input type="radio" name="q1" value="a"> Alcohol<br>
+<input type="radio" name="q1" value="b"> α-hydroxy ketone<br>
+<input type="radio" name="q1" value="c"> Alkane<br>
+<button onclick="checkAnswer()">Check Answer</button>
+<p id="result"></p>
+</div>
+
+<div class="box">
+<h2>Applications</h2>
+<ul>
+<li>Benzil synthesis</li>
+<li>Drug intermediates</li>
+<li>Organic synthesis</li>
+</ul>
+</div>
+
+<div class="box">
+<h2>Print / Save</h2>
+<button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<script>
+function checkAnswer(){
+let ans = document.querySelector('input[name="q1"]:checked');
+let result = document.getElementById('result');
+if(!ans){
+result.innerHTML = "Please select an option";
+return;
+}
+if(ans.value === "b"){
+result.innerHTML = "Correct!";
+result.className = "correct";
+}else{
+result.innerHTML = "Wrong answer";
+result.className = "wrong";
+}
+}
+</script>
+
+</body>
+</html>
