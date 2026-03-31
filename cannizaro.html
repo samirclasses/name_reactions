@@ -1,27 +1,142 @@
-Apex Chemistry
-Benzoin Condensation
-Definition
-In organic chemistry, the benzoin addition is an addition reaction involving two aldehydes (-CH=O). The reaction generally occurs between aromatic aldehydes or glyoxals (OCH-CHO), and results in formation of an acyloin (-COCH(OH)-). In the classic example, benzaldehyde is converted to benzoin (PhCH(OH)COPh).
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannizzaro Reaction</title>
 
+<style>
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+  margin: 40px;
+}
 
-Mechanism (Stepwise)
-The reaction mechanism was proposed in 1903 by A. J. Lapworth. In the first step in this reaction, the cyanide anion (as sodium cyanide) reacts with the aldehyde in a nucleophilic addition. Rearrangement of the intermediate results in polarity reversal of the carbonyl group, which then adds to the second carbonyl group in a second nucleophilic addition. Proton transfer and elimination of the cyanide ion affords benzoin as the product. This is a reversible reaction, which means that the distribution of products is determined by the relative thermodynamic stability of the products and starting material.
+h1, h3 {
+  background: #2c3e50;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
 
+h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #2c3e50;
+  padding-bottom: 5px;
+}
 
-Key Features
-Carbon–carbon bond formation
-Requires nucleophilic catalyst
-Forms α-hydroxy ketone
-Quick Quiz
-1. Benzoin condensation forms:
+.section {
+  margin-bottom: 25px;
+}
 
- Alcohol
- α-hydroxy ketone
- Alkane
-Check Answer
-Applications
-Benzil synthesis
-Drug intermediates
-Organic synthesis
-Print / Save
-Print / Save as PDF
+.quiz {
+  background: #f4f6f7;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+button {
+  background: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #34495e;
+}
+
+.answer {
+  display: none;
+  margin-top: 10px;
+  font-weight: bold;
+  color: green;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Apex Chemistry</h1>
+<h3>Cannizzaro Reaction</h3>
+
+<div class="section">
+<h2>Definition</h2>
+<p>
+Cannizzaro reaction is a chemical reaction in which aldehydes having no α-hydrogen undergo self oxidation and reduction (disproportionation) in the presence of a concentrated base such as NaOH or KOH.
+One molecule of aldehyde is oxidized to a carboxylic acid, while the other is reduced to an alcohol.
+</p>
+</div>
+
+<div class="section">
+<h2>General Reaction</h2>
+<p style="text-align:center;">
+2 RCHO + OH⁻ → RCOO⁻ + RCH₂OH
+</p>
+</div>
+
+<div class="section">
+<h2>Example</h2>
+<p>
+Benzaldehyde undergoes Cannizzaro reaction in presence of concentrated NaOH to give benzyl alcohol and sodium benzoate.
+</p>
+<p style="text-align:center;">
+2 C₆H₅CHO → C₆H₅CH₂OH + C₆H₅COONa
+</p>
+</div>
+
+<div class="section">
+<h2>Mechanism (Stepwise)</h2>
+<ul>
+<li>Hydroxide ion attacks the carbonyl carbon (nucleophilic addition).</li>
+<li>Formation of a tetrahedral intermediate.</li>
+<li>Hydride ion transfer from one aldehyde molecule to another.</li>
+<li>Formation of alcohol and carboxylate ion.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Key Features</h2>
+<ul>
+<li>Occurs only in aldehydes without α-hydrogen</li>
+<li>Disproportionation reaction (oxidation + reduction)</li>
+<li>Requires strong base</li>
+<li>Produces alcohol and carboxylate salt</li>
+</ul>
+</div>
+
+<div class="section quiz">
+<h2>Quick Quiz</h2>
+<p>1. Cannizzaro reaction occurs in:</p>
+
+<input type="radio" name="q1"> Aldehydes with α-hydrogen<br>
+<input type="radio" name="q1"> Aldehydes without α-hydrogen<br>
+<input type="radio" name="q1"> Ketones<br>
+
+<br>
+<button onclick="showAnswer()">Check Answer</button>
+<div class="answer" id="ans">Correct Answer: Aldehydes without α-hydrogen</div>
+</div>
+
+<div class="section">
+<h2>Applications</h2>
+<ul>
+<li>Preparation of alcohols and acids</li>
+<li>Industrial synthesis of benzyl alcohol</li>
+<li>Useful in organic synthesis</li>
+</ul>
+</div>
+
+<script>
+function showAnswer() {
+  document.getElementById("ans").style.display = "block";
+}
+</script>
+
+</body>
+</html>
