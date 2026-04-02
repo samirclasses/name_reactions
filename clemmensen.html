@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clemmensen Reduction</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#ffffff;
+  color:#000000;
+  margin:40px;
+  line-height:1.7;
+}
+
+h1{
+  background:#2c3e50;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+
+h2{
+  color:#2c3e50;
+  margin-top:30px;
+}
+
+.box{
+  background:#f4f6f7;
+  padding:15px;
+  border-left:5px solid #2c3e50;
+  margin:15px 0;
+}
+
+.quiz{
+  background:#eaf2f8;
+  padding:15px;
+  border-left:5px solid #2980b9;
+}
+
+button{
+  padding:8px 15px;
+  background:#2c3e50;
+  color:white;
+  border:none;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{
+  background:#1a242f;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  font-weight:bold;
+  color:green;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Apex Chemistry<br>Clemmensen Reduction</h1>
+
+<h2>Definition</h2>
+<div class="box">
+Clemmensen reduction is a chemical reaction in which aldehydes and ketones are reduced to hydrocarbons (alkanes) using zinc amalgam (Zn-Hg) in the presence of concentrated hydrochloric acid (HCl). The carbonyl group (>C=O) is completely reduced to a methylene group (-CH₂-).
+</div>
+
+<h2>General Reaction</h2>
+<div class="box">
+R-CO-R' → R-CH₂-R'  (Zn-Hg / conc. HCl)
+</div>
+
+<h2>Example</h2>
+<div class="box">
+Benzaldehyde is reduced to toluene using Clemmensen reduction:
+<br><br>
+C₆H₅CHO → C₆H₅CH₃
+<br><br>
+Acetone is reduced to propane:
+<br><br>
+CH₃COCH₃ → CH₃CH₂CH₃
+</div>
+
+<h2>Mechanism</h2>
+<div class="box">
+The exact mechanism is complex and occurs on the surface of zinc metal in acidic medium. It is believed to involve:
+<ul>
+<li>Formation of zinc-carbon intermediates</li>
+<li>Electron transfer from zinc</li>
+<li>Stepwise reduction of carbonyl group</li>
+<li>Final formation of hydrocarbon</li>
+</ul>
+</div>
+
+<h2>Key Features</h2>
+<div class="box">
+<ul>
+<li>Reduces aldehydes and ketones to alkanes</li>
+<li>Occurs in strongly acidic medium</li>
+<li>Uses Zn-Hg (zinc amalgam)</li>
+<li>Best for acid-stable compounds</li>
+<li>Complementary to Wolff–Kishner reduction (basic conditions)</li>
+</ul>
+</div>
+
+<h2>Quick Quiz</h2>
+<div class="quiz">
+<p>Clemmensen reduction is carried out in:</p>
+
+<input type="radio" name="q1"> Basic medium<br>
+<input type="radio" name="q1" id="correct"> Acidic medium<br>
+<input type="radio" name="q1"> Neutral medium<br>
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<div class="answer" id="ans">Correct Answer: Acidic medium</div>
+</div>
+
+<h2>Applications</h2>
+<div class="box">
+<ul>
+<li>Conversion of carbonyl compounds to hydrocarbons</li>
+<li>Used in organic synthesis for deoxygenation</li>
+<li>Preparation of alkanes from aldehydes and ketones</li>
+</ul>
+</div>
+
+<script>
+function checkAnswer(){
+  document.getElementById("ans").style.display = "block";
+}
+</script>
+
+</body>
+</html>
