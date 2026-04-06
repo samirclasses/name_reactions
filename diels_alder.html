@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diels–Alder Reaction</title>
+
+<style>
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  h2 {
+    color: #34495e;
+    margin-top: 20px;
+  }
+
+  .box {
+    border-left: 5px solid #3498db;
+    padding: 10px;
+    margin: 15px 0;
+    background: #f4f9ff;
+  }
+
+  .quiz {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+
+  button {
+    padding: 8px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background: #2980b9;
+  }
+
+  .result {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Diels–Alder Reaction</h1>
+
+<h2>Definition</h2>
+<div class="box">
+The Diels–Alder reaction is a cycloaddition reaction between a conjugated diene and a dienophile to form a six-membered cyclic compound. It is a concerted reaction and forms two new σ-bonds simultaneously.  
+It is named after Otto Diels and Kurt Alder, who discovered it in 1928.
+</div>
+
+<h2>General Reaction</h2>
+<div class="box">
+Diene + Dienophile → Cyclohexene derivative
+</div>
+
+<h2>Example</h2>
+<div class="box">
+1,3-butadiene + ethene → cyclohexene
+</div>
+
+<h2>Mechanism</h2>
+<div class="box">
+The Diels–Alder reaction proceeds through a single-step concerted mechanism:
+<ul>
+<li>The π-electrons of the diene and dienophile reorganize simultaneously.</li>
+<li>Two new σ-bonds are formed.</li>
+<li>A new six-membered ring is produced.</li>
+<li>No intermediates are formed.</li>
+<li>The reaction is stereospecific (cis → cis product).</li>
+</ul>
+</div>
+
+<h2>Key Features</h2>
+<div class="box">
+<ul>
+<li>Pericyclic reaction</li>
+<li>Concerted mechanism</li>
+<li>No catalyst required (but can be accelerated by heat or Lewis acids)</li>
+<li>Forms cyclic compounds</li>
+<li>Stereospecific reaction</li>
+</ul>
+</div>
+
+<h2>Quick Quiz</h2>
+<div class="quiz">
+<p>Diels–Alder reaction is an example of:</p>
+
+<input type="radio" name="q1" value="A"> Substitution reaction<br>
+<input type="radio" name="q1" value="B"> Elimination reaction<br>
+<input type="radio" name="q1" value="C"> Cycloaddition reaction<br>
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<h2>Applications</h2>
+<div class="box">
+<ul>
+<li>Synthesis of cyclic compounds</li>
+<li>Used in pharmaceuticals</li>
+<li>Preparation of natural products</li>
+<li>Polymer chemistry</li>
+</ul>
+</div>
+
+<script>
+function checkAnswer() {
+  const options = document.getElementsByName('q1');
+  let answer = "";
+
+  for (let i = 0; i < options.length; i++) {
+    if (options[i].checked) {
+      answer = options[i].value;
+    }
+  }
+
+  const result = document.getElementById("result");
+
+  if (answer === "C") {
+    result.innerHTML = "✅ Correct! It is a cycloaddition reaction.";
+    result.style.color = "green";
+  } else if (answer === "") {
+    result.innerHTML = "⚠️ Please select an option.";
+    result.style.color = "orange";
+  } else {
+    result.innerHTML = "❌ Incorrect. Try again!";
+    result.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
