@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Claisen Condensation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .quiz {
+      margin-top: 20px;
+      padding: 15px;
+      background: #eef;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Claisen Condensation</h1>
+
+  <h2>Definition</h2>
+  <p>
+    Claisen condensation is a carbon–carbon bond forming reaction in which esters react in the presence 
+    of a strong base to form β-keto esters or β-diketones.
+  </p>
+
+  <h2>General Reaction</h2>
+  <p>R-COOR' → R-CO-CH₂-COOR' (Base)</p>
+
+  <h2>Example</h2>
+  <p>
+    Ethyl acetate → Ethyl acetoacetate <br>
+    CH₃COOEt + CH₃COOEt → CH₃COCH₂COOEt
+  </p>
+
+  <h2>Mechanism (Simplified)</h2>
+  <ul>
+    <li>Formation of enolate ion</li>
+    <li>Nucleophilic attack on another ester</li>
+    <li>Elimination of alkoxide</li>
+    <li>Formation of β-keto ester</li>
+  </ul>
+
+  <h2>Key Features</h2>
+  <ul>
+    <li>Occurs in basic medium</li>
+    <li>Requires α-hydrogen</li>
+    <li>Forms C–C bond</li>
+    <li>Produces β-keto esters</li>
+  </ul>
+
+  <div class="quiz">
+    <h2>Quick Quiz</h2>
+    <p>Claisen condensation is carried out in:</p>
+
+    <input type="radio" name="q1" value="acid"> Acidic medium<br>
+    <input type="radio" name="q1" value="neutral"> Neutral medium<br>
+    <input type="radio" name="q1" value="basic"> Basic medium<br><br>
+
+    <button onclick="checkAnswer()">Check Answer</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <h2>Applications</h2>
+  <ul>
+    <li>Synthesis of β-keto esters</li>
+    <li>Used in pharmaceuticals</li>
+    <li>Carbon chain elongation</li>
+  </ul>
+
+</div>
+
+<script>
+  function checkAnswer() {
+    let options = document.getElementsByName('q1');
+    let result = document.getElementById('result');
+    let selected = "";
+
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].checked) {
+        selected = options[i].value;
+      }
+    }
+
+    if (selected === "basic") {
+      result.innerHTML = "✅ Correct! Claisen condensation occurs in basic medium.";
+      result.style.color = "green";
+    } else if (selected === "") {
+      result.innerHTML = "⚠️ Please select an answer.";
+      result.style.color = "orange";
+    } else {
+      result.innerHTML = "❌ Incorrect. The correct answer is Basic medium.";
+      result.style.color = "red";
+    }
+  }
+</script>
+
+</body>
+</html>
