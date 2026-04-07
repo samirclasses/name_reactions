@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friedel-Crafts Alkylation</title>
+
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #38bdf8;
+  }
+
+  h2 {
+    color: #facc15;
+    margin-top: 25px;
+  }
+
+  .card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .quiz {
+    margin-top: 20px;
+  }
+
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #38bdf8;
+    color: black;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background: #0ea5e9;
+  }
+
+  .answer {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #22c55e;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Friedel-Crafts Alkylation</h1>
+
+<div class="card">
+<h2>Definition</h2>
+<p>
+Friedel-Crafts alkylation is an electrophilic aromatic substitution reaction in which an alkyl group is introduced into an aromatic ring using an alkyl halide in the presence of a Lewis acid catalyst such as AlCl₃.
+</p>
+<p>
+It was discovered by Charles Friedel and James Crafts in 1877.
+</p>
+</div>
+
+<div class="card">
+<h2>General Reaction</h2>
+<p>
+Ar–H + R–Cl → Ar–R + HCl (in presence of AlCl₃)
+</p>
+</div>
+
+<div class="card">
+<h2>Example</h2>
+<p>
+Benzene + CH₃Cl → Toluene (in presence of AlCl₃)
+</p>
+</div>
+
+<div class="card">
+<h2>Mechanism</h2>
+<p>
+1. Formation of electrophile: Alkyl halide reacts with AlCl₃ to generate a carbocation.<br><br>
+2. Electrophilic attack: The aromatic ring attacks the carbocation forming a sigma complex.<br><br>
+3. Deprotonation: Loss of H⁺ restores aromaticity and forms the alkylated product.
+</p>
+</div>
+
+<div class="card">
+<h2>Key Features</h2>
+<ul>
+<li>Occurs via electrophilic substitution</li>
+<li>Requires Lewis acid catalyst (AlCl₃)</li>
+<li>Forms C–C bond</li>
+<li>Carbocation rearrangement possible</li>
+<li>Polyalkylation may occur</li>
+</ul>
+</div>
+
+<div class="card quiz">
+<h2>Quick Quiz</h2>
+<p>Friedel-Crafts alkylation requires:</p>
+
+<input type="radio" name="q1"> Acidic medium<br>
+<input type="radio" name="q1"> Neutral medium<br>
+<input type="radio" name="q1" id="correct"> Lewis acid catalyst<br>
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<div id="result" class="answer"></div>
+</div>
+
+<div class="card">
+<h2>Applications</h2>
+<ul>
+<li>Synthesis of alkylbenzene compounds</li>
+<li>Used in petrochemical industries</li>
+<li>Intermediate formation in pharmaceuticals</li>
+<li>Preparation of dyes and polymers</li>
+</ul>
+</div>
+
+</div>
+
+<script>
+function checkAnswer() {
+  let correct = document.getElementById("correct");
+  let result = document.getElementById("result");
+
+  if (correct.checked) {
+    result.innerHTML = "✅ Correct! Friedel-Crafts uses a Lewis acid catalyst like AlCl₃.";
+  } else {
+    result.innerHTML = "❌ Incorrect. Try again!";
+  }
+}
+</script>
+
+</body>
+</html>
