@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grignard's Reagent</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f7;
+    margin:40px;
+    line-height:1.6;
+}
+
+h1{
+    background:#2c3e50;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+h2{
+    color:#2c3e50;
+    border-bottom:2px solid #ddd;
+    padding-bottom:5px;
+}
+
+.section{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+button{
+    margin-top:10px;
+    padding:8px 12px;
+    background:#3498db;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2980b9;
+}
+
+.result{
+    margin-top:10px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+<h3>Apex Chemistry</h3>
+<h1>Grignard's Reagent</h1>
+
+<div class="section">
+<h2>Definition</h2>
+<p>
+Grignard reagents are organometallic compounds having the general formula <b>R–Mg–X</b>, 
+where R is an alkyl or aryl group and X is a halogen (Cl, Br, I).
+</p>
+<p>
+They are prepared by reacting an alkyl or aryl halide with magnesium metal in dry ether.
+</p>
+<p>
+These reagents are highly reactive and act as strong nucleophiles and bases.
+</p>
+</div>
+
+<div class="section">
+<h2>Applications</h2>
+<ul>
+<li>Formation of alcohols by reaction with aldehydes and ketones</li>
+<li>Preparation of carboxylic acids using carbon dioxide</li>
+<li>Used in synthesis of hydrocarbons</li>
+<li>Carbon–carbon bond formation (very important in organic synthesis)</li>
+<li>Preparation of secondary and tertiary alcohols</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Limitations</h2>
+<ul>
+<li>Highly sensitive to moisture (reacts with water)</li>
+<li>Cannot be prepared in presence of alcohol, acids, or water</li>
+<li>Requires strictly dry conditions (anhydrous ether)</li>
+<li>Reacts with oxygen and carbon dioxide in air</li>
+<li>Not compatible with compounds containing acidic hydrogen</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>MCQs</h2>
+
+<p>1. Grignard reagent has the general formula:</p>
+<input type="radio" name="q1" value="a"> R–OH<br>
+<input type="radio" name="q1" value="b"> R–Mg–X<br>
+<input type="radio" name="q1" value="c"> R–COOH<br>
+<input type="radio" name="q1" value="d"> R–NH₂<br>
+<button onclick="checkAnswer('q1','b','result1')">Check Answer</button>
+<div id="result1" class="result"></div>
+
+<hr>
+
+<p>2. Grignard reagent reacts with CO₂ to give:</p>
+<input type="radio" name="q2" value="a"> Alcohol<br>
+<input type="radio" name="q2" value="b"> Aldehyde<br>
+<input type="radio" name="q2" value="c"> Carboxylic acid<br>
+<input type="radio" name="q2" value="d"> Ether<br>
+<button onclick="checkAnswer('q2','c','result2')">Check Answer</button>
+<div id="result2" class="result"></div>
+
+<hr>
+
+<p>3. Which solvent is used for Grignard reagent preparation?</p>
+<input type="radio" name="q3" value="a"> Water<br>
+<input type="radio" name="q3" value="b"> Alcohol<br>
+<input type="radio" name="q3" value="c"> Dry Ether<br>
+<input type="radio" name="q3" value="d"> Acid<br>
+<button onclick="checkAnswer('q3','c','result3')">Check Answer</button>
+<div id="result3" class="result"></div>
+
+</div>
+
+<script>
+function checkAnswer(question, correct, resultId){
+    let options = document.getElementsByName(question);
+    let selected = null;
+
+    for(let i=0;i<options.length;i++){
+        if(options[i].checked){
+            selected = options[i].value;
+        }
+    }
+
+    if(selected === null){
+        document.getElementById(resultId).innerHTML = "Please select an option.";
+    }
+    else if(selected === correct){
+        document.getElementById(resultId).innerHTML = "Correct!";
+        document.getElementById(resultId).style.color = "green";
+    }
+    else{
+        document.getElementById(resultId).innerHTML = "Wrong answer.";
+        document.getElementById(resultId).style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
