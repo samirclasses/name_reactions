@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hell–Volhard–Zelinsky Reaction</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f6f7;
+  margin:0;
+  padding:20px;
+  line-height:1.6;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+h1{
+  text-align:center;
+  background:#2c3e50;
+  color:white;
+  padding:15px;
+  border-radius:8px;
+}
+h2{
+  color:#2c3e50;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+button{
+  padding:10px 15px;
+  margin-top:10px;
+  background:#3498db;
+  color:white;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+button:hover{
+  background:#2980b9;
+}
+.mcq{
+  margin:10px 0;
+}
+.result{
+  font-weight:bold;
+  margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Hell–Volhard–Zelinsky Reaction</h1>
+
+<h2>Definition</h2>
+<p>The Hell–Volhard–Zelinsky (HVZ) reaction is a chemical reaction used to halogenate the alpha (α) carbon of carboxylic acids in the presence of halogen (Cl or Br) and red phosphorus.</p>
+
+<h2>General Reaction</h2>
+<p>R-CH<sub>2</sub>-COOH + Br<sub>2</sub>/P → R-CHBr-COOH</p>
+
+<h2>Example</h2>
+<p>CH<sub>3</sub>COOH + Br<sub>2</sub>/P → CH<sub>2</sub>BrCOOH</p>
+
+<h2>Mechanism</h2>
+<p>
+1. Formation of acyl halide using phosphorus.<br>
+2. Enol formation.<br>
+3. Halogenation at alpha carbon.<br>
+4. Hydrolysis to regenerate carboxylic acid.
+</p>
+
+<h2>Applications</h2>
+<ul>
+<li>Preparation of α-halo acids.</li>
+<li>Used in synthesis of amino acids.</li>
+<li>Important intermediate in pharmaceuticals.</li>
+<li>Helps in organic synthesis pathways.</li>
+</ul>
+
+<h2>MCQ Quiz</h2>
+<form id="quizForm">
+<div class="mcq">
+<p>1. HVZ reaction involves:</p>
+<input type="radio" name="q1" value="a"> Beta halogenation<br>
+<input type="radio" name="q1" value="b"> Alpha halogenation<br>
+<input type="radio" name="q1" value="c"> Aromatic substitution<br>
+</div>
+
+<div class="mcq">
+<p>2. Catalyst used is:</p>
+<input type="radio" name="q2" value="a"> Red phosphorus<br>
+<input type="radio" name="q2" value="b"> HCl<br>
+<input type="radio" name="q2" value="c"> NaOH<br>
+</div>
+
+<div class="mcq">
+<p>3. Product formed is:</p>
+<input type="radio" name="q3" value="a"> Alcohol<br>
+<input type="radio" name="q3" value="b"> Alpha halo acid<br>
+<input type="radio" name="q3" value="c"> Ketone<br>
+</div>
+
+<div class="mcq">
+<p>4. Which halogen is commonly used?</p>
+<input type="radio" name="q4" value="a"> Fluorine<br>
+<input type="radio" name="q4" value="b"> Bromine<br>
+<input type="radio" name="q4" value="c"> Iodine<br>
+</div>
+
+<div class="mcq">
+<p>5. Intermediate formed is:</p>
+<input type="radio" name="q5" value="a"> Ester<br>
+<input type="radio" name="q5" value="b"> Acyl halide<br>
+<input type="radio" name="q5" value="c"> Alkene<br>
+</div>
+
+<button type="button" onclick="checkAnswers()">Submit</button>
+</form>
+
+<p class="result" id="result"></p>
+
+</div>
+
+<script>
+function checkAnswers(){
+  let score=0;
+  if(document.querySelector('input[name="q1"]:checked')?.value==='b') score++;
+  if(document.querySelector('input[name="q2"]:checked')?.value==='a') score++;
+  if(document.querySelector('input[name="q3"]:checked')?.value==='b') score++;
+  if(document.querySelector('input[name="q4"]:checked')?.value==='b') score++;
+  if(document.querySelector('input[name="q5"]:checked')?.value==='b') score++;
+
+  document.getElementById('result').innerText = "Your Score: " + score + "/5";
+}
+</script>
+
+</body>
+</html>
